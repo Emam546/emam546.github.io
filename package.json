@@ -6,8 +6,9 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
+    "export":"next export",
     "lint": "next lint",
-    "predeploy": "npm run build",
+    "predeploy": "npm run export",
     "deploy": "gh-pages -d dist"
   },
   "dependencies": {
