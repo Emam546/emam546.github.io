@@ -83,7 +83,7 @@ const Landing: NextPage<Props> = ({ name, jobTitle }) => {
                 </div>
             </div>
             <div className="image-container">
-                <motion.img
+                {/* <motion.img
                     className="landingImage"
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 0.4 }}
@@ -97,7 +97,7 @@ const Landing: NextPage<Props> = ({ name, jobTitle }) => {
                     }}
                     src={landingImage}
                     alt={name}
-                />
+                /> */}
             </div>
             <SocialIcons />
         </section>

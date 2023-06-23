@@ -113,7 +113,7 @@ const Project: NextPage<Props> = ({
                         View Work &#8594;
                     </span>
                 </div>
-                <div className="imageContainer col-6 d-flex align-items-center justify-content-center">
+                <div className="imageContainer col-6 d-flex align-items-center justify-content-center tw-aspect-square">
                     {bloburl && (
                         // eslint-disable-next-line @next/next/no-img-element
                         <img
