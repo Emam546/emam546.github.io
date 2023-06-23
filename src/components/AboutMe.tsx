@@ -13,6 +13,7 @@ interface Props {
     brand: string;
     resume?: string;
     desc: string;
+    phone?: string;
 }
 const AboutMe = ({
     name,
@@ -22,6 +23,7 @@ const AboutMe = ({
     brand,
     resume,
     desc,
+    phone,
 }: Props) => {
     const [ref, inView] = useInView({
         threshold: 0.2,
@@ -109,6 +111,12 @@ const AboutMe = ({
                                     <span>Location:</span>
                                     <p>{location}</p>
                                 </div>
+                                <div className="col-12 col-md-6 tw-pl-0">
+                                    <span>Phone:</span>
+                                    <p>{phone}</p>
+                                </div>
+                            </div>
+                            <div className="row">
                                 <div className="col-12 col-md-6 tw-pl-0">
                                     <span>Availability:</span>
                                     <p>{availability}</p>

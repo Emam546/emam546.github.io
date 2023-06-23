@@ -1,7 +1,12 @@
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
-
-const ContactInfo = ({ name, email, location }: any) => {
+export interface Props {
+    name: string;
+    email: string;
+    location: string;
+    phone: string;
+}
+const ContactInfo = ({ name, email, location, phone }: Props) => {
     const [ref, inView] = useInView({
         threshold: 0,
         triggerOnce: true,
@@ -51,6 +56,19 @@ const ContactInfo = ({ name, email, location }: any) => {
                             <h6 className="infoType">Email</h6>
                             <span className="infoValue">
                                 <a href={`mailto:${email}`}>{email}</a>
+                            </span>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div className="personalContactInfo">
+                        <span className="infoIcon">
+                            <i className=" icon fa-solid fa-phone"></i>
+                        </span>
+                        <div className="mediaWrap">
+                            <h6 className="infoType">Phone</h6>
+                            <span className="infoValue">
+                                <a href={`tel:${phone}`}>{phone}</a>
                             </span>
                         </div>
                     </div>

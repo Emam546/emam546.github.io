@@ -57,6 +57,15 @@ const SocialIcons = (props: HTMLAttributes<HTMLDivElement>) => {
                     ></i>
                 </Icon>
             )}
+            {social.skype && (
+                <Icon href={social.skype}>
+                    <i
+                        className="fa-brands fa-skype"
+                        aria-hidden="true"
+                        title={`${name} Twitter Profile`}
+                    ></i>
+                </Icon>
+            )}
         </div>
     );
 };

@@ -4,44 +4,49 @@ import { GetStaticProps, NextPage } from "next";
 import { Data } from "@src/info";
 import axios from "axios";
 import fs from "fs/promises";
+import { ReactNode } from "react";
 
 interface Props {
     projects: ProjectType[];
     sideProjects: ProjectType[];
 }
+function ProjectsHolder({ children }: { children: ReactNode }) {
+    return (
+        <div className="tw-grid lg:tw-grid-cols-2 tw-w-full tw-pb-24 tw-gap-3">
+            {children}
+        </div>
+    );
+}
 const Portfolio: NextPage<Props> = ({ projects, sideProjects }) => {
     return (
-        <section className="portfolio">
+        <section className="tw-my-12 md:tw-py-12 tw-overflow-hidden tw-container tw-mx-auto tw-px-4">
             <PageHeader
                 title="Portfolio"
                 description="View my work"
+                className="mx-auto"
             />
-            <div
-                className="row"
-                style={{
-                    paddingBottom: "100px",
-                }}
-            >
+            <ProjectsHolder>
                 {projects.map((project, i) => (
                     <Project
                         key={i}
                         {...project}
                     />
                 ))}
-            </div>
+            </ProjectsHolder>
 
             <PageHeader
                 title="Single Page Applications"
                 description="View my work"
+                className="mx-auto"
             />
-            <div className="row">
+            <ProjectsHolder>
                 {sideProjects.map((project, i) => (
                     <Project
                         key={i}
                         {...project}
                     />
                 ))}
-            </div>
+            </ProjectsHolder>
         </section>
     );
 };

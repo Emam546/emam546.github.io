@@ -2,7 +2,7 @@ import AboutMe from "@src/components/AboutMe";
 import PageHeader from "@src/components/PageHeader";
 import { Context } from "@src/context";
 import { useContext } from "react";
-import { GetStaticPaths, GetStaticProps, NextPage } from "next";
+import { GetStaticProps, NextPage } from "next";
 
 const states = [
     {
@@ -48,11 +48,7 @@ const About: NextPage<Props> = () => {
     const availability = states.find(
         (val) => data.availability == val.val
     )!.label;
-
-    const name = `${data.firstName} ${data.lastName}`;
-    const email = data.email;
-    const location = data.address;
-    const brand = "just a text for view";
+    const brand = "";
     const resume = websites.find((val) =>
         val.label.toLowerCase().includes("resume")
     )?.link;
@@ -63,10 +59,11 @@ const About: NextPage<Props> = () => {
                 description="Let me introduce myself"
             />
             <AboutMe
-                name={name}
-                location={location}
+                name={`${data.firstName} ${data.lastName}`}
+                location={data.address}
                 brand={brand}
-                email={email}
+                email={data.email}
+                phone={data.phone}
                 availability={availability}
                 resume={resume}
                 desc={profile}

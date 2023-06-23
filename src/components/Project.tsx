@@ -5,6 +5,7 @@ import { useEffect, useState } from "react";
 import closeModal from "../images/close.svg";
 import ImageNext from "next/image";
 import { NextPage } from "next";
+import classNames from "classnames";
 export interface Props {
     technologies: string;
     title: string;
@@ -91,7 +92,6 @@ const Project: NextPage<Props> = ({
     return (
         <motion.div
             ref={ref}
-            className="col-sm-12 col-lg-6"
             variants={variants}
             initial="hidden"
             animate={inView ? "visible" : "hidden"}
@@ -99,10 +99,20 @@ const Project: NextPage<Props> = ({
         >
             <div
                 style={{ backgroundColor: color }}
-                className="projectCard d-flex align-items-center justify-content-center p-5"
+                className={classNames(
+                    "tw-cursor-pointer tw-text-white tw-overflow-hidden tw-rounded",
+                    "tw-relative tw-group tw-grid tw-grid-cols-6 tw-p-5",
+                    "before:tw-w-full before:tw-h-full before:tw-absolute before:tw-top-0 before:tw-left-0 before:tw-bg-black/70 before:tw-opacity-30 before:tw-transition-all before:tw-ease-in-out before:tw-duration-300",
+                    "md:tw-p-7 md:tw-min-h-[23rem] hover:before:tw-opacity-0"
+                )}
                 onClick={handleOpenModal}
             >
-                <div className="textWrap col-6 d-flex flex-column justify-content-center align-items-center m-5">
+                <div
+                    className={classNames(
+                        "tw-z-10 tw-relative tw-col-span-6 md:tw-col-span-4 tw-flex flex-column justify-content-center align-items-center",
+                        "md:group-hover:-tw-translate-x-[250%] tw-duration-[0.9s] tw-ease-in-out tw-transition-all"
+                    )}
+                >
                     <p className="tw-text-[12px] md:tw-text-[14px]">
                         <em>{technologies}</em>
                     </p>
@@ -113,15 +123,26 @@ const Project: NextPage<Props> = ({
                         View Work &#8594;
                     </span>
                 </div>
-                <div className="imageContainer col-6 d-flex align-items-center justify-content-center tw-aspect-square">
-                    {bloburl && (
-                        // eslint-disable-next-line @next/next/no-img-element
-                        <img
-                            src={bloburl}
-                            className="tw-h-[12rem] tw-w-auto"
-                            alt="Laptop displaying the application"
-                        />
+                <div
+                    className={classNames(
+                        "tw-z-10 tw-relative tw-col-span-6 tw-flex tw-items-center tw-justify-center tw-w-full",
+                        "md:tw-absolute md:tw-w-full md:tw-h-full md:tw-top-0 md:tw-left-1/2 ",
+                        "md:tw-transition-all md:tw-duration-[1.3s] md:tw-ease-in-out md:group-hover:-tw-translate-x-1/2"
                     )}
+                >
+                    <div className="tw-mx-auto tw-aspect-[5/3] tw-max-h-[12rem] tw-h-full">
+                        {bloburl && (
+                            // eslint-disable-next-line @next/next/no-img-element
+                            <img
+                                src={bloburl}
+                                className={classNames(
+                                    "tw-w-full",
+                                    "md:tw-transition-all md:tw-ease-out md:tw-duration-1000 md:group-hover:tw-scale-[1.4] tw-mt-7"
+                                )}
+                                alt="Laptop displaying the application"
+                            />
+                        )}
+                    </div>
                 </div>
             </div>
             <Modal
@@ -166,7 +187,7 @@ const Project: NextPage<Props> = ({
                     <div className="tw-mt-10 tw-grid sm:tw-grid-cols-2 tw-gap-3">
                         {github && (
                             <a
-                                className="btn tw-text-center tw-block tw-font-semibold"
+                                className="btn tw-no-underline tw-text-center tw-block tw-font-semibold"
                                 href={github}
                             >
                                 GitHub Repo
@@ -174,7 +195,7 @@ const Project: NextPage<Props> = ({
                         )}
                         {deployed && (
                             <a
-                                className="btn tw-text-center tw-block tw-font-semibold"
+                                className="btn tw-no-underline tw-text-center tw-block tw-font-semibold"
                                 href={deployed}
                             >
                                 Live Link

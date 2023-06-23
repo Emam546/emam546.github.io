@@ -4,13 +4,11 @@ import Form from "@src/components/Form";
 import ContactInfo from "@src/components/ContactInfo";
 import { useContext } from "react";
 import { Context } from "@src/context";
-import {GetStaticProps } from 'next';
+import { GetStaticProps } from "next";
 
 const Contact = () => {
     const data = useContext(Context).info;
     const name = `${data.firstName} ${data.lastName}`;
-    const email = data.email;
-    const location = data.address;
     return (
         <section className="contact">
             <PageHeader
@@ -25,8 +23,9 @@ const Contact = () => {
                     <div className="col-12 col-lg-6">
                         <ContactInfo
                             name={name}
-                            location={location}
-                            email={email}
+                            location={data.address}
+                            email={data.email}
+                            phone={data.phone}
                         />
                     </div>
                 </div>
@@ -36,13 +35,10 @@ const Contact = () => {
     );
 };
 
-
-export const getStaticProps: GetStaticProps = async (ctx) =>{
+export const getStaticProps: GetStaticProps = async (ctx) => {
     return {
-        props:{
-
-        }
-    }
-}
+        props: {},
+    };
+};
 
 export default Contact;
