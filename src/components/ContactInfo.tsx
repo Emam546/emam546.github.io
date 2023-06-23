@@ -1,16 +1,21 @@
 import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
+import { useContext } from "react";
+import { Context } from "@src/context";
 export interface Props {
     name: string;
     email: string;
-    location: string;
-    phone: string;
+    location?: string;
+    phone?: string;
 }
 const ContactInfo = ({ name, email, location, phone }: Props) => {
     const [ref, inView] = useInView({
         threshold: 0,
         triggerOnce: true,
     });
+    const mapLoc = useContext(Context).websites.find((val) =>
+        val.label.toLowerCase().includes("map")
+    )?.link;
     return (
         <motion.div
             className="contactInfo"
@@ -36,17 +41,31 @@ const ContactInfo = ({ name, email, location, phone }: Props) => {
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div className="personalContactInfo">
-                        <span className="infoIcon">
-                            <i className="icon fa-solid fa-location-pin "></i>{" "}
-                        </span>
-                        <div className="mediaWrap">
-                            <h6 className="infoType">Location</h6>
-                            <span className="infoValue">{location}</span>
+                {location && (
+                    <li>
+                        <div className="personalContactInfo">
+                            <span className="infoIcon">
+                                <i className="icon fa-solid fa-location-pin "></i>{" "}
+                            </span>
+                            <div className="mediaWrap">
+                                <h6 className="infoType">Location</h6>
+                                {mapLoc ? (
+                                    <a
+                                        href={mapLoc}
+                                        className="infoValue"
+                                    >
+                                        {location}
+                                    </a>
+                                ) : (
+                                    <span className="infoValue">
+                                        {location}
+                                    </span>
+                                )}
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                )}
+
                 <li>
                     <div className="personalContactInfo">
                         <span className="infoIcon">
@@ -60,19 +79,21 @@ const ContactInfo = ({ name, email, location, phone }: Props) => {
                         </div>
                     </div>
                 </li>
-                <li>
-                    <div className="personalContactInfo">
-                        <span className="infoIcon">
-                            <i className=" icon fa-solid fa-phone"></i>
-                        </span>
-                        <div className="mediaWrap">
-                            <h6 className="infoType">Phone</h6>
-                            <span className="infoValue">
-                                <a href={`tel:${phone}`}>{phone}</a>
+                {phone && (
+                    <li>
+                        <div className="personalContactInfo">
+                            <span className="infoIcon">
+                                <i className=" icon fa-solid fa-phone"></i>
                             </span>
+                            <div className="mediaWrap">
+                                <h6 className="infoType">Phone</h6>
+                                <span className="infoValue">
+                                    <a href={`tel:${phone}`}>{phone}</a>
+                                </span>
+                            </div>
                         </div>
-                    </div>
-                </li>
+                    </li>
+                )}
             </ul>
         </motion.div>
     );
