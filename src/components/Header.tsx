@@ -9,9 +9,9 @@ const Header = () => {
     const name = `${firstName} ${lastName}`;
 
     return (
-        <header className="header flex tw-items-start tw-ml-4">
+        <header className="header flex tw-items-start tw-relative tw-px-10 tw-min-h-[93px]">
             <Image
-                className="tw-h-[30px] tw-w-fit"
+                className="tw-h-[30px] tw-w-fit tw-self-center"
                 src={Mlogo}
                 alt={`${name} Logo`}
             />

@@ -1,22 +1,37 @@
 import Header from "@src/components/Header";
-// import "../../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "../../node_modules/bootstrap/dist/css/bootstrap-grid.min.css";
 import "@src/styles/globals.css";
 import "./portfolio/portfolio.css";
 import "./contact/contact.css";
 import "./index.css";
 import "./about/about.css";
-import type { AppContext, AppProps } from "next/app";
+import type { AppContext } from "next/app";
 import axios from "axios";
 import App from "next/app";
 import { Data } from "@src/info";
 import { InitDataType, Provider } from "@src/context";
 import Head from "next/head";
-
+import { Parser } from "htmlparser2";
+function extractTextFromHTML(html: string) {
+    let text = "";
+    const parser = new Parser({
+        ontext: (data) => {
+            text += data;
+        },
+    });
+    parser.write(html);
+    parser.end();
+    return text;
+}
 class MyApp extends App {
     static async getInitialProps({ Component, ctx }: AppContext) {
-        // Make your general request here
-        const [infoRes, websiteRes] = await Promise.all([
+        const pageProps = Component.getInitialProps
+            ? await Component.getInitialProps(ctx)
+            : {};
+
+        if (typeof window !== "undefined")
+            return { pageProps, context: undefined };
+        const [infoRes, websiteRes, profile] = await Promise.all([
             axios.get(
                 "https://cv-builder-tobe.onrender.com/api/v1/data/info/data",
                 {
@@ -34,7 +49,7 @@ class MyApp extends App {
                 }
             ),
             axios.get(
-                "https://cv-builder-tobe.onrender.com/api/v1/data/links/data",
+                "https://cv-builder-tobe.onrender.com/api/v1/data/professional/data",
                 {
                     params: {
                         apikey: process.env.API_KEY,
@@ -44,21 +59,21 @@ class MyApp extends App {
         ]);
         const response = infoRes.data.data as Data["info"]["data"];
         const websites = websiteRes.data.data as Data["links"]["data"];
-        let pageProps = {};
-        if (Component.getInitialProps) {
-            pageProps = await Component.getInitialProps(ctx);
-        }
+
         const context: InitDataType = {
             info: response,
             websites: websites,
+            profile: profile.data.data,
         };
+        console.log(context);
         return { ...pageProps, context } as any;
     }
 
     render() {
-        const { Component, pageProps, context } = this.props;
+        let { Component, pageProps, context } = this.props;
         const name = `${context.info.firstName} ${context.info.lastName}`;
-        // Pass the response data as a prop to your components
+        const profileText =
+            context.profile && extractTextFromHTML(context.profile);
         return (
             <>
                 <Provider contextValue={context}>
@@ -67,14 +82,12 @@ class MyApp extends App {
                             name="author"
                             content={name}
                         />
-                        <meta
-                            name="description"
-                            content={`${name} is a talented ${context.info.jobTitle} who creates amazing digital experiences. With a focus on user experience, Michael brings your website ideas to life with precision and style. Contact Michael today to learn how he can help you craft a compelling online presence that engages and inspires your audience.`}
-                        />
-                        {/* <meta
-                    property="og:image"
-                    content="https://github.com/mdyeates/my-portfolio/raw/main/src/images/screenshot.png"
-                /> */}
+                        {profileText && (
+                            <meta
+                                name="description"
+                                content={profileText}
+                            />
+                        )}
                     </Head>
                     <Header />
                     <Component {...pageProps} />

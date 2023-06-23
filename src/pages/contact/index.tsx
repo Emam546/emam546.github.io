@@ -4,6 +4,7 @@ import Form from "@src/components/Form";
 import ContactInfo from "@src/components/ContactInfo";
 import { useContext } from "react";
 import { Context } from "@src/context";
+import {GetStaticProps } from 'next';
 
 const Contact = () => {
     const data = useContext(Context).info;
@@ -34,5 +35,14 @@ const Contact = () => {
         </section>
     );
 };
+
+
+export const getStaticProps: GetStaticProps = async (ctx) =>{
+    return {
+        props:{
+
+        }
+    }
+}
 
 export default Contact;

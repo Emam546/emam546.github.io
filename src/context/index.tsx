@@ -5,6 +5,7 @@ import React, { createContext, useState } from "react";
 export type InitDataType = {
     info: Data["info"]["data"];
     websites: Data["links"]["data"];
+    profile: string;
 };
 export const Context = createContext<InitDataType>({
     info: {
@@ -23,6 +24,7 @@ export const Context = createContext<InitDataType>({
         availability: "",
     },
     websites: [],
+    profile: "",
 });
 export function Provider({
     children,

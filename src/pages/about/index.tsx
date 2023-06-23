@@ -3,8 +3,6 @@ import PageHeader from "@src/components/PageHeader";
 import { Context } from "@src/context";
 import { useContext } from "react";
 import { GetStaticPaths, GetStaticProps, NextPage } from "next";
-import axios from "axios";
-import { Data } from "@src/info";
 
 const states = [
     {
@@ -44,12 +42,9 @@ const states = [
         val: "flexible",
     },
 ];
-interface Props {
-    desc: string;
-    resume: string;
-}
-const About: NextPage<Props> = ({ desc, resume }) => {
-    const data = useContext(Context).info;
+interface Props {}
+const About: NextPage<Props> = () => {
+    const { info: data, websites, profile } = useContext(Context);
     const availability = states.find(
         (val) => data.availability == val.val
     )!.label;
@@ -57,9 +52,10 @@ const About: NextPage<Props> = ({ desc, resume }) => {
     const name = `${data.firstName} ${data.lastName}`;
     const email = data.email;
     const location = data.address;
-    const jobTitle = data.jobTitle;
-    const brand = "";
-
+    const brand = "just a text for view";
+    const resume = websites.find((val) =>
+        val.label.toLowerCase().includes("resume")
+    )?.link;
     return (
         <section className="about">
             <PageHeader
@@ -73,40 +69,14 @@ const About: NextPage<Props> = ({ desc, resume }) => {
                 email={email}
                 availability={availability}
                 resume={resume}
-                jobTitle={jobTitle}
-                desc={desc}
+                desc={profile}
             />
         </section>
     );
 };
-
-export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-    const res = await axios.get(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/professional/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
-    );
-    const resResume = await axios.get(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/links/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
-    );
-    const resume =
-        (resResume.data.data as Data["links"]["data"]).find((val) =>
-            val.label.toLowerCase().includes("resume")
-        )?.link || "";
+export const getStaticProps: GetStaticProps = async (ctx) => {
     return {
-        props: {
-            desc: res.data.data,
-            resume,
-        },
+        props: {},
     };
 };
-
 export default About;

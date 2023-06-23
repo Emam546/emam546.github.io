@@ -10,65 +10,19 @@ interface Props {
     jobTitle: string;
 }
 const Landing: NextPage<Props> = ({ name, jobTitle }) => {
-    const styles = {
-        landing: {
-            height: "calc(100% - 93px)",
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-        },
-
-        landingImage: {
-            position: "absolute",
-            bottom: "0",
-            opacity: "0.3",
-            mixBlendMode: "lighten",
-            height: "80%",
-        },
-
-        textContainer: {
-            display: "flex",
-            flexDirection: "column",
-            letterSpacing: "1px",
-            textAlign: "center",
-            zIndex: "1",
-            color: "#fff",
-            textShadow: "1px 1px 3px #000",
-        },
-
-        name: {
-            color: "#fff",
-            fontWeight: "700",
-            marginTop: "-100px",
-            paddingBottom: "28px",
-        },
-    };
-
     return (
-        <section
-            className="landing"
-            style={styles.landing}
-        >
+        <section className="landing tw-flex tw-justify-center tw-items-center tw-flex-1">
             <Draw />
             <div
-                className="textContainer"
+                className="textContainer tw-tracking-wider tw-mb-[10rem] tw-text-center tw-z-10 tw-text-white"
                 style={{
-                    display: "flex",
-                    flexDirection: "column",
-                    letterSpacing: "1px",
-                    textAlign: "center",
-                    zIndex: "1",
-                    color: "#fff",
                     textShadow: "1px 1px 3px #000",
                 }}
             >
-                <h1
-                    className="name"
-                    style={styles.name}
-                >
+                <h1 className="name tw-text-white tw-font-bold tw-mb-7 tw-text-5xl md:tw-text-7xl">
                     {name}
                 </h1>
-                <div className="description">
+                <div className="tw-text-2xl md:tw-text-3xl">
                     <Typewriter
                         onInit={(typewriter) => {
                             typewriter
@@ -82,24 +36,7 @@ const Landing: NextPage<Props> = ({ name, jobTitle }) => {
                     />
                 </div>
             </div>
-            <div className="image-container">
-                {/* <motion.img
-                    className="landingImage"
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 0.4 }}
-                    transition={{ duration: 1, ease: "easeInOut" }}
-                    style={{
-                        position: "absolute",
-                        bottom: "0",
-                        opacity: "0.3",
-                        mixBlendMode: "lighten",
-                        height: "80%",
-                    }}
-                    src={landingImage}
-                    alt={name}
-                /> */}
-            </div>
-            <SocialIcons />
+            <SocialIcons className="tw-flex tw-absolute tw-left-12 tw-bottom-5 md:tw-flex-col" />
         </section>
     );
 };
