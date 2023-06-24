@@ -34,3 +34,5 @@ dist
 *.tsbuildinfo
 next-env.d.ts
 public/projectsImages
+src/styles/style.module.scss
+src/styles/style.module.css.map

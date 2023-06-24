@@ -104,3 +104,8 @@ export type Data = {
         }>;
     };
 };
+export interface RespondType<T = unknown> {
+    status: boolean;
+    msg: string;
+    data: T;
+}

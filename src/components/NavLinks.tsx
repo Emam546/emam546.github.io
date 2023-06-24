@@ -1,7 +1,7 @@
 import { AnchorHTMLAttributes, ReactNode, useState } from "react";
 
-import openMenu from "../images/open.svg";
-import closeMenu from "../images/close.svg";
+import openMenu from "@src/images/open.svg";
+import closeMenu from "@src/images/close.svg";
 import Image from "next/image";
 import Link, { LinkProps } from "next/link";
 import classNames from "classnames";
@@ -55,6 +55,12 @@ const NavLinks = () => {
                     onClick={() => setIsMenuOpen(false)}
                 >
                     About
+                </Item>
+                <Item
+                    href="/skills"
+                    onClick={() => setIsMenuOpen(false)}
+                >
+                    Skills
                 </Item>
                 <Item
                     href="/portfolio"

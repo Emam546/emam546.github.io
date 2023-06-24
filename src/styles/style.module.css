@@ -1,0 +1,74 @@
+.skills {
+  min-height: 100vh;
+  padding: calc(4.8rem + 1rem) 0 2rem 0;
+  background-color: transparent;
+}
+.skills .wrapper {
+  max-width: 1080px;
+  margin: 20px auto;
+  padding: 0 20px;
+  position: relative;
+}
+.skills .wrapper .skillsopen {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-bottom: 2rem;
+  color: #ffffff;
+  background: rgba(0, 189, 123, 0.9647058824);
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 8px 10px;
+  font-family: "Ubuntu Mono", monospace;
+  letter-spacing: 0.5px;
+}
+.skills .wrapper .skillsclose {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 3rem;
+  color: #ffffff;
+  background: rgba(0, 189, 123, 0.9647058824);
+  border-radius: 10px;
+  width: -moz-fit-content;
+  width: fit-content;
+  padding: 8px 10px;
+  font-family: "Ubuntu Mono", monospace;
+  letter-spacing: 0.5px;
+}
+.skills .wrapper .skills_content {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3rem;
+}
+.skills .wrapper .skills_content a {
+  font-size: 3.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 15px;
+  border-radius: 10px;
+  box-shadow: 0 0 6px rgba(255, 255, 255, 0.624);
+  transition: 0.5s all ease-in-out !important;
+}
+.skills .wrapper .skills_content a:hover {
+  border-radius: 50px;
+  background: rgba(0, 189, 123, 0.9647058824);
+  box-shadow: 0 0 6px rgba(111, 125, 252, 0.6);
+}
+.skills .wrapper .skills_content a svg {
+  transition: all 0.3s ease-in-out;
+}
+.skills .wrapper .skills_content a:hover svg {
+  color: #ffffff !important;
+}
+
+@media (max-width: 500px) {
+  .skills .wrapper .skills_content {
+    gap: 2rem;
+  }
+  .skills .wrapper .skills_content a {
+    font-size: 2.5rem;
+  }
+}/*# sourceMappingURL=style.module.css.map */

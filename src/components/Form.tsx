@@ -41,7 +41,7 @@ const Form = () => {
             .then((res) => res.json())
             .then((data) => {
                 setSuccess(true);
-                alert("Email was sent successfully")
+                alert("Email sent successfully.");
                 setFormData({
                     ...formData,
                     name: "",
