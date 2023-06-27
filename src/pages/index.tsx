@@ -1,6 +1,4 @@
-import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
-import landingImage from "@src/images/me.svg";
 import Draw from "@src/components/Draw";
 import SocialIcons from "@src/components/SocialIcons";
 import { GetStaticProps, NextPage } from "next";

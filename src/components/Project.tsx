@@ -113,13 +113,13 @@ const Project: NextPage<Props> = ({
                         "md:group-hover:-tw-translate-x-[250%] tw-duration-[0.9s] tw-ease-in-out tw-transition-all"
                     )}
                 >
-                    <p className="tw-text-[12px] md:tw-text-[14px]">
+                    <p className="tw-text-xs md:tw-text-sm tw-text-center">
                         <em>{technologies}</em>
                     </p>
-                    <h3 className="tw-text-2xl md:tw-text-3xl tw-py-3 tw-whitespace-nowrap">
+                    <h3 className="tw-text-2xl md:tw-text-3xl tw-py-3 tw-text-center">
                         {title}
                     </h3>
-                    <span className="tw-text-[15px] md:tw-text-lg tw-block tw-text-center">
+                    <span className="md:tw-text-lg tw-block tw-text-center">
                         View Work &#8594;
                     </span>
                 </div>
@@ -130,14 +130,14 @@ const Project: NextPage<Props> = ({
                         "md:tw-transition-all md:tw-duration-[1.3s] md:tw-ease-in-out md:group-hover:-tw-translate-x-1/2"
                     )}
                 >
-                    <div className="tw-mx-auto tw-aspect-[5/3] tw-max-h-[12rem] tw-h-full">
+                    <div className="tw-aspect-[5/3] tw-mt-7 tw-mx-auto tw-max-h-[12rem] tw-flex-1">
                         {bloburl && (
                             // eslint-disable-next-line @next/next/no-img-element
                             <img
                                 src={bloburl}
                                 className={classNames(
-                                    "tw-w-full",
-                                    "md:tw-transition-all md:tw-ease-out md:tw-duration-1000 md:group-hover:tw-scale-[1.4] tw-mt-7"
+                                    "tw-max-h-full tw-mx-auto",
+                                    "md:tw-transition-all md:tw-ease-out md:tw-duration-1000 md:group-hover:tw-scale-[1.4]"
                                 )}
                                 alt="Laptop displaying the application"
                             />
@@ -154,7 +154,7 @@ const Project: NextPage<Props> = ({
                         padding: "60px",
                         display: "flex",
                         flexDirection: "column",
-                        width: "80%",
+                        width: "90%",
                         top: "50%",
                         left: "50%",
                         right: "auto",
@@ -163,6 +163,8 @@ const Project: NextPage<Props> = ({
                         transform: "translate(-50%, -50%)",
                         zIndex: "999",
                         maxWidth: "90rem",
+                        overflow: "auto",
+                        maxHeight:"100vh"
                     },
                 }}
             >

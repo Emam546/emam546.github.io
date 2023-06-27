@@ -32,8 +32,8 @@
 }
 
 .personalContactInfo {
-  display: flex;
-  align-items: center;
+  display: grid;
+  grid-template-columns: auto 1fr;
 }
 
 ul {
@@ -45,6 +45,7 @@ ul {
   padding-left: var(--sm-spacing);
   padding-top: 12px;
   padding-bottom: 12px;
+  word-break: break-all;
 }
 
 .formGroup {
