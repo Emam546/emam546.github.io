@@ -18,7 +18,7 @@ const AboutMeBio = ({ aboutMe, avatar }: Props) => {
 
             <div
                 className={classNames(
-                    "font-general-regular w-full sm:w-3/4 text-left",
+                    "font-general-regular w-full sm:w-3/4 text-left text-ternary-dark dark:text-ternary-light text-xl",
                     style.aboutme
                 )}
                 dangerouslySetInnerHTML={{ __html: aboutMe }}
