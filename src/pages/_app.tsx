@@ -62,8 +62,8 @@ class MyApp extends App {
         let { Component, pageProps, context } = this.props;
         const name = `${context.info.firstName} ${context.info.lastName}`;
         const profileText =
+
             context.profile && extractTextFromHTML(context.profile);
-        console.log(context.websites);
         return (
             <>
                 <Head>
