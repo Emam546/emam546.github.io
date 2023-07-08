@@ -8,7 +8,7 @@ import "./about/about.css";
 import type { AppContext } from "next/app";
 import axios from "axios";
 import App from "next/app";
-import { Data } from "@src/info";
+import { Data, RespondType } from "@src/info";
 import { InitDataType, Provider } from "@src/context";
 import Head from "next/head";
 import { Parser } from "htmlparser2";
@@ -48,8 +48,8 @@ class MyApp extends App {
                     },
                 }
             ),
-            axios.get(
-                "https://cv-builder-tobe.onrender.com/api/v1/data/professional/data",
+            axios.get<RespondType<Data["paragraph"]["data"]>>(
+                "https://cv-builder-tobe.onrender.com/api/v1/data/paragraph/data",
                 {
                     params: {
                         apikey: process.env.API_KEY,
@@ -63,17 +63,16 @@ class MyApp extends App {
         const context: InitDataType = {
             info: response,
             websites: websites,
-            profile: profile.data.data,
+            profile: profile.data.data[0].desc,
+            desc: profile.data.data[1].desc,
         };
-        console.log(context);
         return { ...pageProps, context } as any;
     }
 
     render() {
         let { Component, pageProps, context } = this.props;
         const name = `${context.info.firstName} ${context.info.lastName}`;
-        const profileText =
-            context.profile && extractTextFromHTML(context.profile);
+        const profileText = context.desc && extractTextFromHTML(context.desc);
         return (
             <>
                 <Provider contextValue={context}>

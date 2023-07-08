@@ -17,9 +17,12 @@ export type Data = {
             availability: string;
         };
     };
-    professional: {
+    paragraph: {
         head: string;
-        data: string;
+        data: {
+            label: string;
+            desc: string;
+        }[];
     };
     employ: {
         head: string;

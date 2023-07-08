@@ -1,7 +1,7 @@
 import Project, { Props as ProjectType } from "@src/components/Project";
 import PageHeader from "@src/components/PageHeader";
 import { GetStaticProps, NextPage } from "next";
-import { Data } from "@src/info";
+import { Data, RespondType } from "@src/info";
 import axios from "axios";
 import fs from "fs/promises";
 import { ReactNode } from "react";
@@ -86,7 +86,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     if (!(await folderExists("public/projectsImages")))
         await fs.mkdir("public/projectsImages");
 
-    const res = await axios.get(
+    const res = await axios.get<RespondType<Data["projects"]["data"]>>(
         "https://cv-builder-tobe.onrender.com/api/v1/data/projects/data",
         {
             params: {
@@ -122,19 +122,21 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             description: val.desc,
             technologies: val.technologies.slice(0, 3).join(" | "),
             title: val.name,
-            deployed: val.links.find((v) =>
-                v.label.toLocaleLowerCase().includes("live")
-            )?.link,
-            github: val.links.find((v) =>
-                v.label.toLocaleLowerCase().includes("github")
-            )?.link,
+            deployed:
+                val.links.find((v) =>
+                    v.label.toLocaleLowerCase().includes("live")
+                )?.link || "",
+            github:
+                val.links.find((v) =>
+                    v.label.toLocaleLowerCase().includes("github")
+                )?.link || "",
         } as ProjectType;
     }
     const mainProjects: ProjectType[] = await Promise.all(
-        (res.data.data[0].data as ReturnedData).map(getData)
+        res.data.data[0].data.map(getData)
     );
     const sideProjects: ProjectType[] = await Promise.all(
-        (res.data.data[1].data as ReturnedData).map(getData)
+        res.data.data[2].data.map(getData)
     );
 
     return {

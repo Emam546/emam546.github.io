@@ -6,6 +6,7 @@ export type InitDataType = {
     info: Data["info"]["data"];
     websites: Data["links"]["data"];
     profile: string;
+    desc: string;
 };
 export const Context = createContext<InitDataType>({
     info: {
@@ -25,6 +26,7 @@ export const Context = createContext<InitDataType>({
     },
     websites: [],
     profile: "",
+    desc: "",
 });
 export function Provider({
     children,
