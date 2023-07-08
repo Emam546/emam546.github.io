@@ -1,0 +1,13 @@
+.projectInfo {
+    * {
+        // font-general-regular
+        @apply mb-5 text-lg ;
+    }
+    li{
+        @apply ml-3 mb-1;
+        &:before{
+            content: "*";
+            @apply mr-2;
+        }
+    }
+}
