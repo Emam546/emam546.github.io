@@ -18,10 +18,10 @@ const Home: NextPage<Props> = ({ projects, banner }) => {
         <div className="container mx-auto">
             <AppBanner {...banner} />
             <ProjectsGrid {...projects} />
-            <div className="mt-8 sm:mt-10 flex justify-center">
+            <div className="flex justify-center mt-8 sm:mt-10">
                 <Link
                     href="/projects"
-                    className="font-general-medium flex items-center px-6 py-3 rounded-lg shadow-lg hover:shadow-xl bg-indigo-500 hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 text-white text-lg sm:text-xl duration-300"
+                    className="flex items-center px-6 py-3 text-lg text-white duration-300 bg-indigo-500 rounded-lg shadow-lg font-general-medium hover:shadow-xl hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 sm:text-xl"
                     aria-label="More Projects"
                 >
                     <Button title="More Projects" />
@@ -51,10 +51,12 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
             },
         }
     );
+    const allProjects = [...projects[1].data, ...projects[2].data];
+
     return {
         props: {
             projects: {
-                projects: projects[2]!.data.slice(0,6).map((val) => ({
+                projects: allProjects.slice(0, 6).map((val) => ({
                     id: val.id,
                     img: val.images.find(
                         ({ widthRation, heightRation }) =>
