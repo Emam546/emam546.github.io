@@ -7,8 +7,11 @@ export default function LoadingState() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
-        const handleStart = (url: string) =>
-            url !== router.asPath && setLoading(true);
+        const handleStart = (url: string) => {
+            setTimeout(() => {
+                url !== router.asPath && setLoading(true);
+            }, 1000);
+        };
         const handleComplete = () => setLoading(false);
 
         router.events.on("routeChangeStart", handleStart);
