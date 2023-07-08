@@ -38,6 +38,9 @@ class MyApp extends App {
             {
                 data: { data: info },
             },
+            {
+                data: { data: desc },
+            },
         ] = await Promise.all([
             await axios.get<RespondType<Data["links"]["data"]>>(
                 "https://cv-builder-tobe.onrender.com/api/v1/data/links/data",
@@ -55,15 +58,24 @@ class MyApp extends App {
                     },
                 }
             ),
+            await axios.get<RespondType<Data["paragraph"]["data"]>>(
+                "https://cv-builder-tobe.onrender.com/api/v1/data/paragraph/data",
+                {
+                    params: {
+                        apikey: process.env.API_KEY,
+                    },
+                }
+            ),
         ]);
-        return { ...pageProps, context: { websites, info } } as any;
+        return {
+            ...pageProps,
+            context: { websites, info, desc: desc[1].desc },
+        } as any;
     }
     render() {
         let { Component, pageProps, context } = this.props;
         const name = `${context.info.firstName} ${context.info.lastName}`;
-        const profileText =
-
-            context.profile && extractTextFromHTML(context.profile);
+        const profileText = context.desc && extractTextFromHTML(context.desc);
         return (
             <>
                 <Head>
