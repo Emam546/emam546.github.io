@@ -19,7 +19,7 @@ const ProjectInfo = ({ desc, github, live }: Props) => {
                 )}
                 dangerouslySetInnerHTML={{ __html: desc }}
             ></div>
-            <div className="flex justify-center gap-x-10">
+            <div className="flex justify-center flex-wrap-reverse gap-x-10 gap-y-4">
                 {github && (
                     <a
                         href={github}
