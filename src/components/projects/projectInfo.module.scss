@@ -6,8 +6,8 @@
     li{
         @apply ml-3 mb-1;
         &:before{
-            content: "*";
-            @apply mr-2;
+            content: "·";
+            @apply mr-3 mb-4 font-bold;
         }
     }
 }
