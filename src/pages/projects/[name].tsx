@@ -8,24 +8,30 @@ import axios from "axios";
 import { Data, RespondType } from "@/info";
 import { getRandomValues } from "@/utils";
 import ProjectInfo from "@/components/projects/ProjectInfo";
+import Head from "next/head";
 
 const ProjectSingle: NextPage<ProjectType> = (project) => {
     return (
-        <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{
-                ease: "easeInOut",
-                duration: 0.6,
-                delay: 0.15,
-            }}
-            className="container mx-auto mt-5 sm:mt-10"
-        >
-            <ProjectHeader {...project.ProjectHeader} />
-            <ProjectGallery ProjectImages={project.ProjectImages} />
-            <ProjectInfo desc={project.desc} />
-            <ProjectRelatedProjects {...project.RelatedProject} />
-        </motion.div>
+        <>
+            <Head>
+                <title>{project.ProjectHeader.title}</title>
+            </Head>
+            <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{
+                    ease: "easeInOut",
+                    duration: 0.6,
+                    delay: 0.15,
+                }}
+                className="container mx-auto mt-5 sm:mt-10"
+            >
+                <ProjectHeader {...project.ProjectHeader} />
+                <ProjectGallery ProjectImages={project.ProjectImages} />
+                <ProjectInfo desc={project.desc} />
+                <ProjectRelatedProjects {...project.RelatedProject} />
+            </motion.div>
+        </>
     );
 };
 export const getStaticPaths: GetStaticPaths = async () => {

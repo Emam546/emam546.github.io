@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { GetStaticProps, NextPage } from "next";
 import axios from "axios";
 import { RespondType, Data } from "@/info";
+import Head from "next/head";
 interface Props {
     aboutMe: string;
     avatar: string;
@@ -12,6 +13,9 @@ interface Props {
 const About: NextPage<Props> = ({ aboutMe, avatar }) => {
     return (
         <>
+            <Head>
+                <title>About</title>
+            </Head>
             <motion.div
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}

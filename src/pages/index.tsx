@@ -9,25 +9,31 @@ import { Data, RespondType } from "@/info";
 import axios from "axios";
 import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
+import Head from "next/head";
 interface Props {
     projects: ProjectProps;
     banner: AppPannerProps;
 }
 const Home: NextPage<Props> = ({ projects, banner }) => {
     return (
-        <div className="container mx-auto">
-            <AppBanner {...banner} />
-            <ProjectsGrid {...projects} />
-            <div className="flex justify-center mt-8 sm:mt-10">
-                <Link
-                    href="/projects"
-                    className="flex items-center px-6 py-3 text-lg text-white duration-300 bg-indigo-500 rounded-lg shadow-lg font-general-medium hover:shadow-xl hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 sm:text-xl"
-                    aria-label="More Projects"
-                >
-                    <Button title="More Projects" />
-                </Link>
+        <>
+            <Head>
+                <title>{banner.name}</title>
+            </Head>
+            <div className="container mx-auto">
+                <AppBanner {...banner} />
+                <ProjectsGrid {...projects} />
+                <div className="flex justify-center mt-8 sm:mt-10">
+                    <Link
+                        href="/projects"
+                        className="flex items-center px-6 py-3 text-lg text-white duration-300 bg-indigo-500 rounded-lg shadow-lg font-general-medium hover:shadow-xl hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 sm:text-xl"
+                        aria-label="More Projects"
+                    >
+                        <Button title="More Projects" />
+                    </Link>
+                </div>
             </div>
-        </div>
+        </>
     );
 };
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {

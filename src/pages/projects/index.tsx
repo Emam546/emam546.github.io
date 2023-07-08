@@ -4,14 +4,20 @@ import ProjectsGrid, {
 import { RespondType, Data } from "@/info";
 import axios from "axios";
 import { GetStaticProps, NextPage } from "next";
+import Head from "next/head";
 interface Props {
     projects: ProjectProps;
 }
 const Projects: NextPage<Props> = ({ projects }) => {
     return (
-        <div className="container mx-auto">
-            <ProjectsGrid {...projects} />
-        </div>
+        <>
+            <Head>
+                <title>Projects</title>
+            </Head>
+            <div className="container mx-auto">
+                <ProjectsGrid {...projects} />
+            </div>
+        </>
     );
 };
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
