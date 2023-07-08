@@ -56,7 +56,7 @@ export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     return {
         props: {
             projects: {
-                projects: allProjects.slice(0, 6).map((val) => ({
+                projects: allProjects.slice(0, 8).map((val) => ({
                     id: val.id,
                     img: val.images.find(
                         ({ widthRation, heightRation }) =>
