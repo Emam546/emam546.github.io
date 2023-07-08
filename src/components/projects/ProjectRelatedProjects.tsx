@@ -1,5 +1,3 @@
-import { useContext } from "react";
-import SingleProjectContext from "../../context/SingleProjectContext";
 import { ProjectType } from "@/data/singleProjectData";
 import Link from "next/link";
 
