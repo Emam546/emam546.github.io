@@ -7,12 +7,16 @@ export default function LoadingState() {
     const [loading, setLoading] = useState(false);
 
     useEffect(() => {
+        let t: ReturnType<typeof setTimeout>;
         const handleStart = (url: string) => {
-            setTimeout(() => {
+            t = setTimeout(() => {
                 url !== router.asPath && setLoading(true);
             }, 1000);
         };
-        const handleComplete = () => setLoading(false);
+        const handleComplete = () => {
+            setLoading(false);
+            clearTimeout(t);
+        };
 
         router.events.on("routeChangeStart", handleStart);
         router.events.on("routeChangeComplete", handleComplete);
