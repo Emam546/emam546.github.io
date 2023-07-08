@@ -28,7 +28,7 @@ const ProjectSingle: NextPage<ProjectType> = (project) => {
             >
                 <ProjectHeader {...project.ProjectHeader} />
                 <ProjectGallery ProjectImages={project.ProjectImages} />
-                <ProjectInfo desc={project.desc} />
+                <ProjectInfo {...project.ProjectInfo} />
                 <ProjectRelatedProjects {...project.RelatedProject} />
             </motion.div>
         </>
@@ -88,7 +88,17 @@ export const getStaticProps: GetStaticProps<ProjectType> = async (ctx) => {
                 tags: project.technologies,
                 title: project.name,
             },
-            desc: project.desc,
+            ProjectInfo: {
+                desc: project.desc,
+                live:
+                    project.links.find((val) =>
+                        val.label.toLocaleLowerCase().includes("live")
+                    )?.link || "",
+                github:
+                    project.links.find((val) =>
+                        val.label.toLocaleLowerCase().includes("github")
+                    )?.link || "",
+            },
             ProjectImages: project.images
                 .filter((val) => val.widthRation / val.heightRation == 1)
                 .map((val) => ({

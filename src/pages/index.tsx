@@ -29,7 +29,7 @@ const Home: NextPage<Props> = ({ projects, banner }) => {
                         className="flex items-center px-6 py-3 text-lg text-white duration-300 bg-indigo-500 rounded-lg shadow-lg font-general-medium hover:shadow-xl hover:bg-indigo-600 focus:ring-1 focus:ring-indigo-900 sm:text-xl"
                         aria-label="More Projects"
                     >
-                        <Button title="More Projects" />
+                        More Project
                     </Link>
                 </div>
             </div>

@@ -1,13 +1,10 @@
 import { DetailedHTMLProps } from "react";
 
-export interface Props {
-    title: string;
-}
+export interface Props {}
 function Button({
-    title,
     ...props
 }: Props & React.ButtonHTMLAttributes<HTMLButtonElement>) {
-    return <button {...props}>{title}</button>;
+    return <button {...props} />;
 }
 
 export default Button;

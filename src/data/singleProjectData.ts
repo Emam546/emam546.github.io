@@ -1,10 +1,11 @@
+import { Props as ProjectInfoProps } from "@/components/projects/ProjectInfo";
 export interface ProjectType {
     ProjectHeader: {
         title: string;
         publishDate: string;
         tags: string[];
     };
-    desc: string;
+    ProjectInfo: ProjectInfoProps;
     ProjectImages: {
         id: string;
         title: string;

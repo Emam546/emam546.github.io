@@ -135,7 +135,7 @@ const AppHeader = () => {
                             className="block w-24 px-4 py-2 mt-2 text-left text-white duration-300 bg-indigo-500 rounded-sm shadow-sm font-general-medium sm:hidden text-md hover:bg-indigo-600"
                             aria-label="Hire Me Button"
                         >
-                            <Button title="Hire Me" />
+                            <Button>Hire Me</Button>
                         </span>
                     </div>
                 </div>
@@ -173,7 +173,7 @@ const AppHeader = () => {
                             className="text-md font-general-medium bg-indigo-500 hover:bg-indigo-600 text-white shadow-sm rounded-md px-5 py-2.5 duration-300"
                             aria-label="Hire Me Button"
                         >
-                            <Button title="Hire Me" />
+                            <Button>Hire Me</Button>
                         </span>
                     </div>
 
