@@ -29,7 +29,7 @@ export function getRandomValuesNoRepeat<T>(
     const res: T[] = new Array();
     let cur = [...arr];
     const max =
-        Math.max(cur.length, random ? getRandomNum(num) : num) - filter.length;
+        Math.min(cur.length, random ? getRandomNum(num) : num) - filter.length;
     for (let i = 0; i < max; i++) {
         // to avoid repeating
         let i = getRandomNum(cur.length);
