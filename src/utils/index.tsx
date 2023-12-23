@@ -28,8 +28,10 @@ export function getRandomValuesNoRepeat<T>(
 ): T[] {
     const res: T[] = new Array();
     let cur = [...arr];
-    const max =
-        Math.min(cur.length, random ? getRandomNum(num) : num) - filter.length;
+    const max = Math.min(
+        cur.length - filter.length,
+        random ? getRandomNum(num) : num
+    );
     for (let i = 0; i < max; i++) {
         // to avoid repeating
         let i = getRandomNum(cur.length);
