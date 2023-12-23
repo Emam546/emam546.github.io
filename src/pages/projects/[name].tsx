@@ -98,16 +98,16 @@ export const getStaticProps: GetStaticProps<ProjectType> = async (ctx) => {
                     img: val.image,
                 })) as ProjectType["ProjectImages"],
             RelatedProject: {
-                Projects: getRandomValuesNoRepeat(AllProjects, 4, false).map(
-                    (val) => ({
-                        id: val.id,
-                        img: val.images.find(
-                            ({ heightRation, widthRation }) =>
-                                heightRation / widthRation == 1
-                        )!.image,
-                        title: val.name,
-                    })
-                ),
+                Projects: getRandomValuesNoRepeat(AllProjects, 4, false, [
+                    project,
+                ]).map((val) => ({
+                    id: val.id,
+                    img: val.images.find(
+                        ({ heightRation, widthRation }) =>
+                            heightRation / widthRation == 1
+                    )!.image,
+                    title: val.name,
+                })),
             },
         },
     };

@@ -23,14 +23,17 @@ export function getRandomValues<T>(
 export function getRandomValuesNoRepeat<T>(
     arr: T[],
     num = arr.length,
-    random = true
+    random = true,
+    filter: T[] = []
 ): T[] {
     const res: T[] = new Array();
     let cur = [...arr];
-    const max = Math.max(cur.length, random ? getRandomNum(num) : num);
+    const max =
+        Math.max(cur.length, random ? getRandomNum(num) : num) - filter.length;
     for (let i = 0; i < max; i++) {
         // to avoid repeating
-        const i = getRandomNum(cur.length);
+        let i = getRandomNum(cur.length);
+        while (filter.includes(cur[i])) i = getRandomNum(cur.length);
         res.push(cur[i]);
         cur = cur.filter((_, ci) => ci != i);
     }
