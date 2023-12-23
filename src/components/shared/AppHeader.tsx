@@ -3,8 +3,8 @@ import { FiMenu, FiMoon, FiSun, FiX } from "react-icons/fi";
 
 import useThemeSwitcher from "@/hooks/useThemeSwitcher";
 import HireMeModal from "@/components/HireMeModal";
-import logoLight from "@/images/logo-light.svg";
-import logoDark from "@/images/logo-dark.svg";
+import logoLight from "@/images/LogoM.svg";
+import logoDark from "@/images/LogoM.svg";
 import { motion } from "framer-motion";
 import Button from "@/components/reusable/Button";
 import Link from "next/link";
@@ -47,23 +47,17 @@ const AppHeader = () => {
             <div className="z-10 block max-w-screen-lg py-6 xl:max-w-screen-xl sm:flex sm:justify-between sm:items-center">
                 {/* Header menu links and small screen hamburger menu */}
                 <div className="flex items-center justify-between px-4 sm:px-0">
-                    <div>
-                        <Link href="/">
-                            {activeTheme === "dark" ? (
-                                <Image
-                                    src={logoDark}
-                                    className="w-36"
-                                    alt="Dark Logo"
-                                />
-                            ) : (
-                                <Image
-                                    src={logoLight}
-                                    className="w-36"
-                                    alt="Dark Logo"
-                                />
-                            )}
-                        </Link>
-                    </div>
+                    <Link href="/">
+                        <div className="flex items-end gap-x-1 select-none">
+                            <Image
+                                src={logoDark}
+                                className="w-10 aspect-square bg-gray-100 dark:bg-gray-700 p-1"
+                                alt="Dark Logo"
+                            />
+
+                            <span className="font-medium text-2xl mb-1 dark:text-gray-200">ahmoud Imam</span>
+                        </div>
+                    </Link>
 
                     {/* Theme switcher small screen */}
                     <div className="flex items-center gap-3">
