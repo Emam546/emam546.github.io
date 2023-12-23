@@ -32,7 +32,7 @@ export function getRandomValuesNoRepeat<T>(
         cur.length - filter.length,
         random ? getRandomNum(num) : num
     );
-    for (let i = 0; i < max; i++) {
+    for (let c = 0; c < max; c++) {
         // to avoid repeating
         let i = getRandomNum(cur.length);
         while (filter.includes(cur[i])) i = getRandomNum(cur.length);
