@@ -7,6 +7,7 @@ import { GetStaticProps, NextPage } from "next";
 import axios from "axios";
 import { Data, RespondType } from "@/info";
 import Head from "next/head";
+import PortfolioApi from "@/axios";
 interface Props {
     contact: ContactDetailsProps;
 }
@@ -34,20 +35,12 @@ const Contact: NextPage<Props> = ({ contact }) => {
                 </div>
             </motion.div>
         </>
-
     );
 };
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const {
         data: { data: info },
-    } = await axios.get<RespondType<Data["info"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/info/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
-    );
+    } = await PortfolioApi.get<RespondType<Data["info"]["data"]>>("/info/data");
     return {
         props: {
             contact: {

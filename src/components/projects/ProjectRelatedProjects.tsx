@@ -19,11 +19,13 @@ const ProjectRelatedProjects = ({
                                 .split(" ")
                                 .join("-")}`}
                         >
-                            <img
-                                src={project.img}
-                                className="cursor-pointer rounded-xl"
-                                alt={project.title}
-                            />
+                            <div className="aspect-square">
+                                <img
+                                    src={project.img}
+                                    className="cursor-pointer rounded-xl object-cover w-full h-full"
+                                    alt={project.title}
+                                />
+                            </div>
                         </Link>
                     );
                 })}

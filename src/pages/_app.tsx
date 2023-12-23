@@ -12,6 +12,7 @@ import App from "next/app";
 import { Parser } from "htmlparser2";
 import axios from "axios";
 import { Data, RespondType } from "@/info";
+import PortfolioApi from "@/axios";
 
 function extractTextFromHTML(html: string) {
     let text = "";
@@ -42,34 +43,23 @@ class MyApp extends App {
                 data: { data: desc },
             },
         ] = await Promise.all([
-            await axios.get<RespondType<Data["links"]["data"]>>(
-                "https://cv-builder-tobe.onrender.com/api/v1/data/links/data",
-                {
-                    params: {
-                        apikey: process.env.API_KEY,
-                    },
-                }
+            await PortfolioApi.get<RespondType<Data["links"]["data"]>>(
+                "/links/data"
             ),
-            await axios.get<RespondType<Data["info"]["data"]>>(
-                "https://cv-builder-tobe.onrender.com/api/v1/data/info/data",
-                {
-                    params: {
-                        apikey: process.env.API_KEY,
-                    },
-                }
+            await PortfolioApi.get<RespondType<Data["info"]["data"]>>(
+                "/info/data"
             ),
-            await axios.get<RespondType<Data["paragraph"]["data"]>>(
-                "https://cv-builder-tobe.onrender.com/api/v1/data/paragraph/data",
-                {
-                    params: {
-                        apikey: process.env.API_KEY,
-                    },
-                }
+            await PortfolioApi.get<RespondType<Data["paragraph"]["data"]>>(
+                "/paragraph/data"
             ),
         ]);
         return {
             ...pageProps,
-            context: { websites, info, desc: desc[1].desc },
+            context: {
+                websites,
+                info,
+                desc: desc.find((val) => val.title == "Summury")?.desc,
+            },
         } as any;
     }
     render() {

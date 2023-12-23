@@ -6,6 +6,7 @@ import { GetStaticProps, NextPage } from "next";
 import axios from "axios";
 import { RespondType, Data } from "@/info";
 import Head from "next/head";
+import PortfolioApi from "@/axios";
 interface Props {
     aboutMe: string;
     avatar: string;
@@ -49,21 +50,12 @@ const About: NextPage<Props> = ({ aboutMe, avatar }) => {
     );
 };
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
-    const { data: aboutMe } = await axios.get<
+    const { data: aboutMe } = await PortfolioApi.get<
         RespondType<Data["paragraph"]["data"]>
-    >("https://cv-builder-tobe.onrender.com/api/v1/data/paragraph/data", {
-        params: {
-            apikey: process.env.API_KEY,
-        },
-    });
-    const { data: avatar } = await axios.get<RespondType<Data["info"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/info/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
-    );
+    >("/paragraph/data", {});
+    const { data: avatar } = await PortfolioApi.get<
+        RespondType<Data["info"]["data"]>
+    >("/info/data");
     return {
         props: {
             aboutMe: aboutMe.data[0].desc,

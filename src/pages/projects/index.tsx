@@ -1,3 +1,4 @@
+import PortfolioApi from "@/axios";
 import ProjectsGrid, {
     Props as ProjectProps,
 } from "@/components/projects/ProjectsGrid";
@@ -23,13 +24,8 @@ const Projects: NextPage<Props> = ({ projects }) => {
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const {
         data: { data: projects },
-    } = await axios.get<RespondType<Data["projects"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/projects/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
+    } = await PortfolioApi.get<RespondType<Data["projects"]["data"]>>(
+        "/projects/data"
     );
     const allProjects = [...projects[1].data, ...projects[2].data];
     return {

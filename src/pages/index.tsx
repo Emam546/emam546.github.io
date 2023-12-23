@@ -10,6 +10,7 @@ import axios from "axios";
 import { GetStaticProps, NextPage } from "next";
 import Link from "next/link";
 import Head from "next/head";
+import PortfolioApi from "@/axios";
 interface Props {
     projects: ProjectProps;
     banner: AppPannerProps;
@@ -39,23 +40,11 @@ const Home: NextPage<Props> = ({ projects, banner }) => {
 export const getStaticProps: GetStaticProps<Props> = async (ctx) => {
     const {
         data: { data: info },
-    } = await axios.get<RespondType<Data["info"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/info/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
-    );
+    } = await PortfolioApi.get<RespondType<Data["info"]["data"]>>("/info/data");
     const {
         data: { data: projects },
-    } = await axios.get<RespondType<Data["projects"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/projects/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
+    } = await PortfolioApi.get<RespondType<Data["projects"]["data"]>>(
+        "/projects/data"
     );
     const allProjects = [...projects[1].data, ...projects[2].data];
 

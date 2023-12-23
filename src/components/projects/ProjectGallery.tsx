@@ -14,7 +14,7 @@ const ProjectGallery = ({ ProjectImages }: Props) => {
                     >
                         <img
                             src={project.img}
-                            className="w-full cursor-pointer"
+                            className="w-full cursor-pointer object-cover h-full"
                             alt={project.title}
                             key={project.id}
                         />

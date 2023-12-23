@@ -9,6 +9,7 @@ import { Data, RespondType } from "@/info";
 import { getRandomValues } from "@/utils";
 import ProjectInfo from "@/components/projects/ProjectInfo";
 import Head from "next/head";
+import PortfolioApi from "@/axios";
 
 const ProjectSingle: NextPage<ProjectType> = (project) => {
     return (
@@ -37,13 +38,8 @@ const ProjectSingle: NextPage<ProjectType> = (project) => {
 export const getStaticPaths: GetStaticPaths = async () => {
     const {
         data: { data: projects },
-    } = await axios.get<RespondType<Data["projects"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/projects/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
+    } = await PortfolioApi.get<RespondType<Data["projects"]["data"]>>(
+        "/projects/data"
     );
     const AllProjects = [...projects[2].data, ...projects[1].data];
     return {
@@ -67,13 +63,8 @@ export const getStaticProps: GetStaticProps<ProjectType> = async (ctx) => {
         };
     const {
         data: { data: projects },
-    } = await axios.get<RespondType<Data["projects"]["data"]>>(
-        "https://cv-builder-tobe.onrender.com/api/v1/data/projects/data",
-        {
-            params: {
-                apikey: process.env.API_KEY,
-            },
-        }
+    } = await PortfolioApi.get<RespondType<Data["projects"]["data"]>>(
+        "/projects/data"
     );
     const AllProjects = [...projects[2].data, ...projects[1].data];
     const project = AllProjects.find((val) =>

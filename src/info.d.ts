@@ -22,7 +22,7 @@ export type Data = {
         head: string;
         data: {
             id: string;
-            label: string;
+            title: string;
             desc: string;
         }[];
     };
