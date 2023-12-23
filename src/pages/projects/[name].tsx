@@ -6,7 +6,7 @@ import { motion } from "framer-motion";
 import { ProjectType } from "@/data/singleProjectData";
 import axios from "axios";
 import { Data, RespondType } from "@/info";
-import { getRandomValues } from "@/utils";
+import { getRandomValues, getRandomValuesNoRepeat } from "@/utils";
 import ProjectInfo from "@/components/projects/ProjectInfo";
 import Head from "next/head";
 import PortfolioApi from "@/axios";
@@ -98,14 +98,16 @@ export const getStaticProps: GetStaticProps<ProjectType> = async (ctx) => {
                     img: val.image,
                 })) as ProjectType["ProjectImages"],
             RelatedProject: {
-                Projects: getRandomValues(AllProjects, 4, false).map((val) => ({
-                    id: val.id,
-                    img: val.images.find(
-                        ({ heightRation, widthRation }) =>
-                            heightRation / widthRation == 1
-                    )!.image,
-                    title: val.name,
-                })),
+                Projects: getRandomValuesNoRepeat(AllProjects, 4, false).map(
+                    (val) => ({
+                        id: val.id,
+                        img: val.images.find(
+                            ({ heightRation, widthRation }) =>
+                                heightRation / widthRation == 1
+                        )!.image,
+                        title: val.name,
+                    })
+                ),
             },
         },
     };

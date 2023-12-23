@@ -20,3 +20,19 @@ export function getRandomValues<T>(
     }
     return res;
 }
+export function getRandomValuesNoRepeat<T>(
+    arr: T[],
+    num = arr.length,
+    random = true
+): T[] {
+    const res: T[] = new Array();
+    let cur = [...arr];
+    const max = Math.max(cur.length, random ? getRandomNum(num) : num);
+    for (let i = 0; i < max; i++) {
+        // to avoid repeating
+        const i = getRandomNum(cur.length);
+        res.push(cur[i]);
+        cur = cur.filter((_, ci) => ci != i);
+    }
+    return res;
+}
