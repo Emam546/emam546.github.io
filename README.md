@@ -1,38 +1,59 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Portfolio
 
-## Getting Started
+Welcome to my personal portfolio! 🚀
+![Screenshot](screenshots/1.png)
+![Screenshot](screenshots/2.png)
+![Screenshot](screenshots/3.png)
 
-First, run the development server:
+## Overview
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+This portfolio is a showcase of my work, skills, and projects. It is built using **Next.js** and **Tailwind CSS**, ensuring a modern, fast, and responsive experience.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Features
 
-You can start editing the page by modifying `pages/index.tsx`. The page auto-updates as you edit the file.
+- Dynamic content fetched from an external API.
+- Fully customizable for other users.
+- Built with performance and SEO in mind.
+- Exported as a static site using **Next.js**, making it always available to users without requiring server requests.
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.ts`.
+## API Integration
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+This portfolio is powered by my own API service, which allows dynamic updates and customization. The API is hosted at:
+👉 [CV Builder API](https://cv-builder-tobe.onrender.com/)
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+This API enables users to personalize their portfolio by supplying custom data, making it a versatile solution for developers who want to showcase their work dynamically.
 
-## Learn More
+## Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+- **Next.js** – For a seamless React-based framework and static export.
+- **Tailwind CSS** – For a beautiful, responsive design with minimal effort.
+- **Custom API** – Provides dynamic content for flexibility and customization.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## How to Use
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. Clone the repository:
+   ```sh
+   git clone https://github.com/your-username/your-portfolio.git
+   ```
+2. Install dependencies:
+   ```sh
+   cd your-portfolio
+   npm install
+   ```
+3. Run the development server:
+   ```sh
+   npm run dev
+   ```
+4. Customize your data by integrating with the [CV Builder API](https://cv-builder-tobe.onrender.com/).
 
-## Deploy on Vercel
+## Contributing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+If you have suggestions for improvements, feel free to submit a pull request or open an issue!
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+## License
+
+This project is open-source and available under the MIT License.
+
+---
+
+⭐ Don't forget to star the repository if you find it useful!
