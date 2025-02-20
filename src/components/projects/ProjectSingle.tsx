@@ -23,7 +23,7 @@ const ProjectSingle = ({ title, category, image }: Props) => {
                 aria-label="Single Project"
             >
                 <div className="flex flex-col items-stretch h-full overflow-hidden shadow-lg cursor-pointer rounded-xl hover:shadow-xl sm:mb-0 bg-secondary-light dark:bg-ternary-dark">
-                    <div className="aspect-[39/34] overflow-hidden flex items-center bg-gray-400 rounded-t-xl">
+                    <div className="aspect-[4/3] overflow-hidden flex items-center bg-gray-400 rounded-t-xl">
                         <img
                             src={image}
                             className="w-full border-none "
